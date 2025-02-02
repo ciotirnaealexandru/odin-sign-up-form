@@ -4,7 +4,7 @@
     font-family: "Roboto", 'Times New Roman', Times, serif;
     color: black;
     --main: white;
-    --main-transparent: rgba(255, 255, 255, 0.85);
+    --main-transparent: rgba(255, 255, 255, 0.8);
     --accent: rgb(216, 149, 67);
     --main-text: black;
 }
@@ -45,8 +45,8 @@ body {
     background: url("images/cat-background.png");
     background-repeat: no-repeat;
     background-size: cover;
-    filter: blur(5px); /* Apply blur effect */
-    z-index: -1; /* Ensure the pseudo-element stays behind the content */
+    filter: blur(10px);
+    z-index: -1;
 }
 
 .header {
@@ -176,4 +176,10 @@ a:visited {
     font-size: 18px;
     font-weight: bold;
     margin-top: 20px;
+}
+
+.error_message {
+    color: rgb(228, 43, 43);
+    width: 270px;
+    font-size: 13px;
 }
