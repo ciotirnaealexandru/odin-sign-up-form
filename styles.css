@@ -141,6 +141,7 @@ input {
     font-size: 15px;
     font-weight: bold;
     transition: border-color 0.5s ease;
+    color: var(--main-text);
 }
 
 input:focus {
