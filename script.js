@@ -1,29 +1,32 @@
-let dark_button = document.querySelector(".dark-mode");
-let dark_button_image = document.querySelector(".dark-mode-img");
+let darkButton = document.querySelector(".dark-mode");
+let darkButtonImage = document.querySelector(".dark-mode-img");
 
-let toggle = "light";
+let toggle = localStorage.getItem("theme") || "light";
 
-dark_button.addEventListener("click", () => {
-    if (toggle == "light") {
-        toggle = "dark";
+const applyDarkMode = () => {
+    document.documentElement.style.setProperty('--main', 'black');
+    document.documentElement.style.setProperty('--main-transparent', 'rgba(44, 44, 44, 0.85)');
+    document.documentElement.style.setProperty('--accent', 'rgb(219, 158, 84)');
+    document.documentElement.style.setProperty('--main-text', 'white');
+    darkButtonImage.src = "images/basic-moon-ui-svgrepo-com.svg";
+};
 
-        document.documentElement.style.setProperty('--main', 'black');
-        document.documentElement.style.setProperty('--main-transparent', 'rgba(44, 44, 44, 0.85)');
-        document.documentElement.style.setProperty('--accent', 'rgb(219, 158, 84)');
-        document.documentElement.style.setProperty('--main-text', 'white');
+const applyLightMode = () => {
+    document.documentElement.style.setProperty('--main', 'white');
+    document.documentElement.style.setProperty('--main-transparent', 'rgba(255, 255, 255, 0.8)');
+    document.documentElement.style.setProperty('--accent', 'rgb(216, 149, 67)');
+    document.documentElement.style.setProperty('--main-text', 'black');
+    darkButtonImage.src = "images/basic-sun-ui-svgrepo-com.svg";
+};
 
-        dark_button_image.src="images/basic-moon-ui-svgrepo-com.svg";
-    }
-    else {
-        toggle = "light";
+if (toggle === "dark") {
+    applyDarkMode();
+}
 
-        document.documentElement.style.setProperty('--main', 'white');
-        document.documentElement.style.setProperty('--main-transparent', 'rgba(255, 255, 255, 0.8)');
-        document.documentElement.style.setProperty('--accent', 'rgb(216, 149, 67)');
-        document.documentElement.style.setProperty('--main-text', 'black');
-
-        dark_button_image.src="images/basic-sun-ui-svgrepo-com.svg";
-    }
+darkButton.addEventListener("click", () => {
+    toggle = toggle === "light" ? "dark" : "light";
+    localStorage.setItem("theme", toggle);
+    toggle === "dark" ? applyDarkMode() : applyLightMode();
 });
 
 let form = document.querySelector("form");
