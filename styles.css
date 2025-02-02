@@ -146,6 +146,7 @@ input {
 input:focus {
     outline: none;
     background-color: transparent;
+    border-color: var(--accent);
 }
 
 button {
