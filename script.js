@@ -50,7 +50,7 @@ form.addEventListener("submit", (event) => {
     emailError.textContent = "";
     phoneError.textContent = "";
 
-    let passValid = true;
+    let passwordValid = true, passwordConfirmationValid = true;
 
     const password = document.getElementById("password");
     const confirmPassword = document.getElementById("confirm_password");
@@ -90,21 +90,68 @@ form.addEventListener("submit", (event) => {
     //PASSWORD
     if (password.value.trim() === "") {
         passwordError.textContent = "Please fill out this field.";
-        passValid = false;
+        passwordValid = false;
     } else if (password.value.length < 6) {
         passwordError.textContent = "Password must be at least 6 characters long.";
-        passValid = false;
+        passwordValid = false;
+        passwordConfirmationValid = false;
     }
 
     if (confirmPassword.value.trim() === "") {
         confirmPasswordError.textContent = "Please fill out this field.";
-        passValid = false;
+        passwordConfirmationValid = false;
     } else if (password.value !== confirmPassword.value) {
         confirmPasswordError.textContent = "Passwords do not match.";
-        passValid = false;
+        passwordValid = false;
+        passwordConfirmationValid = false;
     }
 
-    if (!passValid || !firstNameValid || !lastNameValid || !phoneValid || !emailValid) {
+    //CHANGE INPUT COLOR
+    const root = document.documentElement;
+
+    // First Name
+    if (!firstNameValid) {
+        firstName.style.borderColor = "rgb(187, 49, 49)";
+    } else {
+        firstName.style.borderColor = getComputedStyle(root).getPropertyValue('--accent').trim();
+    }
+    
+    // Last Name
+    if (!lastNameValid) {
+        lastName.style.borderColor = "rgb(187, 49, 49)";
+    } else {
+        lastName.style.borderColor = getComputedStyle(root).getPropertyValue('--accent').trim();
+    }
+    
+    // Email
+    if (!emailValid) {
+        email.style.borderColor = "rgb(187, 49, 49)";
+    } else {
+        email.style.borderColor = getComputedStyle(root).getPropertyValue('--accent').trim();
+    }
+    
+    // Phone
+    if (!phoneValid) {
+        phone.style.borderColor = "rgb(187, 49, 49)";
+    } else {
+        phone.style.borderColor = getComputedStyle(root).getPropertyValue('--accent').trim();
+    }
+    
+    // Password
+    if (!passwordValid) {
+        password.style.borderColor = "rgb(187, 49, 49)";
+    } else {
+        password.style.borderColor = getComputedStyle(root).getPropertyValue('--accent').trim();
+    }
+    
+    // Confirm Password
+    if (!passwordConfirmationValid) {
+        confirmPassword.style.borderColor = "rgb(187, 49, 49)";
+    } else {
+        confirmPassword.style.borderColor = getComputedStyle(root).getPropertyValue('--accent').trim();
+    }
+
+    if (!firstNameValid || !lastNameValid || !phoneValid || !emailValid || !passwordValid || !passwordConfirmationValid) {
         event.preventDefault();
     }
 })
